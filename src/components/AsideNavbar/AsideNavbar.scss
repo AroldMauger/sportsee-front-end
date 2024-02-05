@@ -1,0 +1,27 @@
+.aside-nav {
+    padding-top: 150px;
+    padding-bottom: 120px;
+
+    width: 8%;
+    min-width: 117px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    align-content: center;
+    gap:80px;
+
+    .icons-container {
+        display: flex;
+        flex-direction: column;
+        gap : 18px;
+        justify-content: center;
+        align-items: center;
+    }
+    .copyright {
+        rotate: 270deg;
+        color:white;
+        width: 200px;
+    }
+}
