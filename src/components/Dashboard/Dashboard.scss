@@ -1,0 +1,23 @@
+.dashboard-container {
+    padding:60px;
+    .dashboard-main-container {
+        display: flex;
+        flex-direction: row;
+
+        .dashboard-charts-container {
+            display: flex;
+            flex-direction: column;
+            width: 58%;
+            min-width: 835px;
+
+            .smallcharts-container {
+                display: flex;
+                flex-direction: row;
+            }
+        }
+        .all-nutrients-container {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
