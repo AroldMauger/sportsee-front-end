@@ -1,8 +1,11 @@
 import React from 'react'
+import "./BarCharts.scss";
 
 function BarCharts() {
   return (
-    <div>BarCharts</div>
+    <div className='barchart-container'>
+        <img src="poids.png" alt="" />
+    </div>
   )
 }
 
