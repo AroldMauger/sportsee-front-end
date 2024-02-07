@@ -26,7 +26,7 @@ function Dashboard() {
           <NutrientsContainer/>
           <NutrientsContainer/>
         </div>      
-  </div>
+      </div>
     </div>
   )
 }
