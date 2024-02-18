@@ -9,13 +9,13 @@ import RadialCharts from "../Dashboard/Charts/RadialCharts/RadialCharts.jsx";
 import UserContext from '../../context/UserContext.jsx';
 
 function Dashboard() {
-  const userData = useContext(UserContext);
-  if (!userData) {
+  // on récupère nos variables depuis le context
+  const { userData, userActivity, userSessions, userPerformance } = useContext(UserContext);
+  if (!userData || !userActivity || !userSessions || !userPerformance) {
     return <div>Loading...</div>;
   }
   //On récupère l'objet data dans une variable keyData
   const { keyData } = userData.data;
-
 
   return (
     <div className='dashboard-container'>

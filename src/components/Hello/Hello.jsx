@@ -3,7 +3,7 @@ import "./Hello.scss";
 import UserContext from '../../context/UserContext.jsx';
 
 function Hello() {
-  const userData = useContext(UserContext);
+  const { userData } = useContext(UserContext);
 
   if (!userData) {
     return <div>Loading...</div>;
