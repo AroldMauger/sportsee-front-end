@@ -31,8 +31,24 @@ function BarCharts() {
           <CartesianGrid strokeDasharray="3 3" vertical={false}/>
           <XAxis dataKey="day" tickFormatter={(value, index) => index + 1}/>  {/* Pour obtenir une numérotation en dessous des barres, on utilise l'index qui commence à 0, donc on ajoute +1*/}
           <YAxis yAxisId="left" orientation="left" stroke="#8884d8" opacity={0}/>
-          <YAxis yAxisId="right" orientation="right" stroke="#82ca9d"  />
-          <Tooltip />
+          <YAxis yAxisId="right" orientation="right" stroke="#9B9EAC" />         {/*domain={[69, 71]} */}
+
+          {/*Tooltip se charge de la modale qui apparaît au survol sur les barres */}
+          <Tooltip 
+          content={(tooltipProps) => {
+            const { payload } = tooltipProps;
+            if (payload && payload.length > 0) {
+              const data = payload[0].payload;
+              return (
+                <div style={{ backgroundColor: '#E60000', padding: '10px', fontSize: "11px", color:"white" }}>
+                  <p>{data.kilogram}kg</p>
+                  <p>{data.calories}kCal</p>
+                </div>
+              );
+            }
+            return null;
+          }}
+        />
           <Legend 
     
           align="right" 
@@ -46,7 +62,7 @@ function BarCharts() {
             { value: 'Calories brûlées (kCal)', color: '#E60000' },
           ]}
           />
-          <Bar radius={[20, 20, 0, 0]} maxBarSize={8} yAxisId="right" dataKey="kilogram" fill="#282D30"   /> {/*domain={[69, 71]} */}
+          <Bar radius={[20, 20, 0, 0]} maxBarSize={8} yAxisId="right" dataKey="kilogram" fill="#282D30"   /> 
           <Bar radius={[20, 20, 0, 0]} maxBarSize={8} yAxisId="left" dataKey="calories" fill="#E60000"   />
         </BarChart>
       </ResponsiveContainer>
