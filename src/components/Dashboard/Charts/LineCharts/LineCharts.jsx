@@ -4,7 +4,10 @@ import "./LineCharts.scss";
 function LineCharts() {
   return (
     <div className='linechart-container'>
-        <img src="Objectifs.png" alt="" />
+
+      {/* <img src="Objectifs.png" alt="" /> */}
+
+        
     </div>
   )
 }

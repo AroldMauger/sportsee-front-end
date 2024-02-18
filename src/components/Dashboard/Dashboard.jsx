@@ -16,6 +16,10 @@ function Dashboard() {
   }
   //On récupère l'objet data dans une variable keyData
   const { keyData } = userData.data;
+  const { sessions } = userActivity.data;
+
+  console.log(userActivity)
+  console.log(userData)
 
   return (
     <div className='dashboard-container'>

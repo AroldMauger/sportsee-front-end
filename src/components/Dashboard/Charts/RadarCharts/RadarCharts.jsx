@@ -4,7 +4,9 @@ import "./RadarCharts.scss";
 function RadarCharts() {
   return (
     <div className='radarcharts-container'>
-        <img src="Radar.png" alt="" />
+        
+           {/* <img src="Radar.png" alt="" /> */}
+
     </div>
   )
 }

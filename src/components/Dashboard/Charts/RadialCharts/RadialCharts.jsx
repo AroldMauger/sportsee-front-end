@@ -3,7 +3,9 @@ import React from 'react'
 function RadialCharts() {
   return (
     <div>
-        <img src="KPI.png" alt="" />
+
+         {/* <img src="KPI.png" alt="" /> */}
+        
     </div>
   )
 }
