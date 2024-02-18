@@ -15,35 +15,39 @@ function BarCharts() {
   const { sessions } = userActivity.data;
 
   return (
-      <ResponsiveContainer width="100%" height="100%" className='barchart-container'>
+      <ResponsiveContainer width="100%" height="70%" className='barchart-container'>
         <BarChart
           width={500}
           height={300}
           data={sessions}
           margin={{
-            top: 20,
+            top: 50,
             right: 30,
             left: 20,
             bottom: 5,
           }}
         >
           <text x={20} y={20} style={{ fontSize: '20px', fontWeight: 'bold' }}>Activité quotidienne</text>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="day" />
+          <CartesianGrid strokeDasharray="3 3" vertical={false}/>
+          <XAxis dataKey="day" tickFormatter={(value, index) => index + 1}/>  {/* Pour obtenir une numérotation en dessous des barres, on utilise l'index qui commence à 0, donc on ajoute +1*/}
           <YAxis yAxisId="left" orientation="left" stroke="#8884d8" opacity={0}/>
           <YAxis yAxisId="right" orientation="right" stroke="#82ca9d"  />
           <Tooltip />
           <Legend 
+    
           align="right" 
           verticalAlign="top" 
           iconType="circle" 
+          iconSize={10}
+          wrapperStyle={{ top: 0 }} 
+
            payload={[
-            { value: 'Poids (kg)', type: 'rect', color: '#282D30' },
-            { value: 'Calories brûlées (kCal)', type: 'rect', color: '#E60000' },
+            { value: 'Poids (kg)', color: '#282D30' },
+            { value: 'Calories brûlées (kCal)', color: '#E60000' },
           ]}
           />
-          <Bar yAxisId="right" dataKey="kilogram" fill="#282D30" />
-          <Bar yAxisId="left" dataKey="calories" fill="#E60000" />
+          <Bar radius={[20, 20, 0, 0]} maxBarSize={8} yAxisId="right" dataKey="kilogram" fill="#282D30"   /> {/*domain={[69, 71]} */}
+          <Bar radius={[20, 20, 0, 0]} maxBarSize={8} yAxisId="left" dataKey="calories" fill="#E60000"   />
         </BarChart>
       </ResponsiveContainer>
   )
