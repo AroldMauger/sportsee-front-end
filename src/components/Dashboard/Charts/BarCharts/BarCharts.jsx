@@ -11,7 +11,7 @@ function BarCharts() {
     return <div>Loading...</div>;
   }
 
-  //On récupère l'objet data dans une variable userInfos
+  //On récupère l'objet data dans une variable objet sessions
   const { sessions } = userActivity.data;
 
   return (
@@ -50,7 +50,6 @@ function BarCharts() {
           }}
         />
           <Legend 
-    
           align="right" 
           verticalAlign="top" 
           iconType="circle" 

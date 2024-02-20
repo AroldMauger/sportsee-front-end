@@ -16,10 +16,7 @@ function Dashboard() {
   }
   //On récupère l'objet data dans une variable keyData
   const { keyData } = userData.data;
-  const { sessions } = userActivity.data;
 
-  console.log(userActivity)
-  console.log(userData)
 
   return (
     <div className='dashboard-container'>
@@ -27,11 +24,11 @@ function Dashboard() {
       <div className='dashboard-main-container'>
         <div className='dashboard-charts-container'>
           <BarCharts/>
-          <div className='smallcharts-container'>
+         {/*<div className='smallcharts-container'> */} 
             <LineCharts/>
             <RadarCharts/>
             <RadialCharts/>
-          </div>
+         {/*</div> */} 
         </div>
         <div className='all-nutrients-container'>
           <NutrientsContainer nutrientName="Calories" nutrientIcon="calories-icon.png" keyData={keyData.calorieCount+"kCal"}/>
