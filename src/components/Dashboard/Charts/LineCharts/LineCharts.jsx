@@ -1,5 +1,5 @@
 import React, { useContext, PureComponent } from 'react';
-import { LineChart, ReferenceArea, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import "./LineCharts.scss";
 import UserContext from '../../../../context/UserContext.jsx';
 
@@ -12,7 +12,6 @@ function LineCharts() {
 
   //On récupère l'objet data dans une variable objet sessions
   const { sessions } = userSessions.data;
-  const tickFill = '#f0bab4';
 
 const CustomTick = ({ index, x, y }) => {
     let label;
@@ -40,40 +39,40 @@ const CustomTick = ({ index, x, y }) => {
         break;
     }
     return (
-      <text x={x - ((index -2) * 8)} y={y} fill={tickFill}>  {/* Ici on modifie l'espace entre les ticks*/}
+      <text x={x - ((index -2) * 8)} y={y} fill="#FFFFFF" opacity={0.5}>  {/* Ici on modifie l'espace entre les ticks*/}
         {label}
       </text>
     );
   };
   return (
 
-      <ResponsiveContainer width={400} height="100%" aspect={1} className={"linechart-container"} >
+      <ResponsiveContainer width={300} aspect={1} className={"linechart-container"}  style={{ position: "relative", width: "100%", height: "100%",  backgroundColor: '#FF0000', borderRadius: "10px" }} >
+        
+
         <LineChart
           data={sessions}
           margin={{
             left: 0,
             top: 20,
             right: 0,            
-            bottom: 5, 
-          }}>
+          }}
+          
+          >
           <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} fill='#FF0000' />
 
           <XAxis 
-            dataKey="day" 
-           tick={<CustomTick />}
-         //   padding={{ left : 20, right: 20 }} 
-                     tickLine={false}
-                     axisLine={false}
-                      tickSize={-35} 
-                 interval={"preserveStartEnd"}
+          dataKey="day" 
+          tick={<CustomTick />}
+          tickLine={false}
+          axisLine={false}
+          tickSize={0} 
+          interval={"preserveStartEnd"}
 
           />
 
           <YAxis 
-         // opacity={0}  
-          domain={["dataMin - 15", "dataMax + 10"]}
-         hide="true"
-
+          domain={["dataMin - 15", "dataMax + 30"]}
+          hide="true"
           />
           <Tooltip 
           content={(tooltipProps) => {
@@ -89,13 +88,34 @@ const CustomTick = ({ index, x, y }) => {
             return null;
           }}
           />
-          <Legend />
-          <Line type="natural" dataKey="sessionLength" stroke="#FFFFFF" dot={false} strokeWidth={3}  />
-          <text x={100} y={50} style={{ fontSize: '14px' }}>Durée moyenne des sessions</text>
 
-          <ReferenceArea x1={5} x2={7} fill="#800000" fillOpacity={0.3} />
+          {/* LinearGradient avec opacity pour la courbe */}
+          <defs>
+            <linearGradient id="lineGradient">
+              <stop offset="0%" stopColor="#FFFFFF" stopOpacity={0.5}/>
+              <stop offset="70%" stopColor="#FFFFFF"/>
+            </linearGradient>
+          </defs>
+      
+          <Line type="natural" dataKey="sessionLength" stroke="url(#lineGradient)" dot={false} strokeWidth={3} opacity={0.7}   style={{ position: "absolute", zIndex: 1 }} // Ajoutez cette ligne pour positionner la ligne au-dessus
+ />
+          <text x={40} y={50} style={{ fontSize: '18px', fill: '#FFFFFF', fontFamily: 'Roboto', fontWeight:'500', opacity:'0.5' }}>
+          <tspan>
+            Durée moyenne des
+          </tspan>
+          <tspan x={40} dy="1.2em">
+            sessions
+          </tspan>
+        </text>
+
 
         </LineChart>
+        
+        {/* Rectangle Dark-red pour les week-end */}
+        <div style={{ position: "absolute", top: 0, right: 0, width: "33%", height: "100%", backgroundColor: "#800000", opacity: 0.2, borderRadius: "0px 10px 10px 0px", zIndex: 1, pointerEvents: "none"}}></div>
+
+
+    
       </ResponsiveContainer>
         
   )
