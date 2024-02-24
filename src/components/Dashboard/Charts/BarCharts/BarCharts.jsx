@@ -29,9 +29,9 @@ function BarCharts() {
         >
           <text x={20} y={20} style={{ fontSize: '20px', fontWeight: 'bold' }}>Activité quotidienne</text>
           <CartesianGrid strokeDasharray="3 3" vertical={false}/>
-          <XAxis dataKey="day" tickFormatter={(value, index) => index + 1}/>  {/* Pour obtenir une numérotation en dessous des barres, on utilise l'index qui commence à 0, donc on ajoute +1*/}
-          <YAxis yAxisId="left" orientation="left" stroke="#8884d8" opacity={0}/>
-          <YAxis yAxisId="right" orientation="right" stroke="#9B9EAC" />         {/*domain={[69, 71]} */}
+          <XAxis dataKey="day" tickFormatter={(value, index) => index + 1} />  {/* Pour obtenir une numérotation en dessous des barres, on utilise l'index qui commence à 0, donc on ajoute +1*/}
+          <YAxis yAxisId="left" orientation="left" stroke="#8884d8" opacity={0} />
+          <YAxis yAxisId="right" orientation="right" stroke="#9B9EAC"           domain={["dataMin - 10", "dataMax + 10"]}/>        {/*domain={[69, 71]} */}
 
           {/*Tooltip se charge de la modale qui apparaît au survol sur les barres */}
           <Tooltip 

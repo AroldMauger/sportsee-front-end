@@ -24,11 +24,9 @@ function Dashboard() {
       <div className='dashboard-main-container'>
         <div className='dashboard-charts-container'>
           <BarCharts/>
-         {/*<div className='smallcharts-container'> */} 
-            <LineCharts/>
-            <RadarCharts/>
-            <RadialCharts/>
-         {/*</div> */} 
+                <LineCharts/>
+                <RadarCharts/>
+                <RadialCharts/>
         </div>
         <div className='all-nutrients-container'>
           <NutrientsContainer nutrientName="Calories" nutrientIcon="calories-icon.png" keyData={keyData.calorieCount+"kCal"}/>

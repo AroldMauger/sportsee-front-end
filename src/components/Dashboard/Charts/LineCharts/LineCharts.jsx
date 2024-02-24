@@ -12,29 +12,69 @@ function LineCharts() {
 
   //On récupère l'objet data dans une variable objet sessions
   const { sessions } = userSessions.data;
-  const daysOfWeekInitials = ["L", "M", "M", "J", "V", "S", "D"];
+  const tickFill = '#f0bab4';
 
+const CustomTick = ({ index, x, y }) => {
+    let label;
+    switch (index) {
+      case 0:
+        label = 'L';
+        break;
+      case 1:
+      case 2:
+        label = 'M';
+        break;
+      case 3:
+        label = 'J';
+        break;
+      case 4:
+        label = 'V';
+        break;
+      case 5:
+        label = 'S';
+        break;
+      case 6:
+        label = 'D';
+        break;
+      default:
+        break;
+    }
+    return (
+      <text x={x - ((index -2) * 8)} y={y} fill={tickFill}>  {/* Ici on modifie l'espace entre les ticks*/}
+        {label}
+      </text>
+    );
+  };
   return (
 
-      <ResponsiveContainer width="40%" height="100%" className={"linechart-container"}>
+      <ResponsiveContainer width={400} height="100%" aspect={1} className={"linechart-container"} >
         <LineChart
-          width={300}
-          height={300}
           data={sessions}
           margin={{
-            top: 30,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} fill='#FF0000'/>
+            left: 0,
+            top: 20,
+            right: 0,            
+            bottom: 5, 
+          }}>
+          <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} fill='#FF0000' />
 
-          <XAxis dataKey="day"   tickFormatter={(value, index) => daysOfWeekInitials[index]}   
-            tick={{ fontSize: '14px', dy: 12, textAlign: 'center' }}  
-         
+          <XAxis 
+            dataKey="day" 
+           tick={<CustomTick />}
+         //   padding={{ left : 20, right: 20 }} 
+                     tickLine={false}
+                     axisLine={false}
+                      tickSize={-35} 
+                 interval={"preserveStartEnd"}
+
           />
-          <YAxis opacity={0}  />
+
+          <YAxis 
+         // opacity={0}  
+          domain={["dataMin - 15", "dataMax + 10"]}
+         hide="true"
+
+          />
           <Tooltip 
           content={(tooltipProps) => {
             const { payload } = tooltipProps;
@@ -47,9 +87,10 @@ function LineCharts() {
               );
             }
             return null;
-          }}/>
+          }}
+          />
           <Legend />
-          <Line type="monotone" dataKey="sessionLength" stroke="#FFFFFF" dot={false} strokeWidth={3}/>
+          <Line type="natural" dataKey="sessionLength" stroke="#FFFFFF" dot={false} strokeWidth={3}  />
           <text x={100} y={50} style={{ fontSize: '14px' }}>Durée moyenne des sessions</text>
 
           <ReferenceArea x1={5} x2={7} fill="#800000" fillOpacity={0.3} />
