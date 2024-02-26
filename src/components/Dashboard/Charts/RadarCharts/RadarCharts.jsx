@@ -17,11 +17,21 @@ function RadarCharts() {
   //On récupère la liste des types de performance dans une variable
   const kinds = userPerformance.data.kind;
 
+  //On veut que les légendes soient en français avec des majuscules
+  const translationsToFrench = {
+    cardio: 'Cardio',
+    energy: 'Énergie',
+    endurance: 'Endurance',
+    strength: 'Force',
+    speed: 'Vitesse',
+    intensity: 'Intensité'
+  }
   //On définit un objet item pour récupérer le kind depuis la variable kinds et sa value
   const dataInChart = data.map(item => ({
-    kind:kinds[item.kind],
+    kind: translationsToFrench[kinds[item.kind]],
     value:item.value
   }));
+
 
   return (
         
@@ -31,7 +41,7 @@ function RadarCharts() {
           <PolarAngleAxis dataKey="kind" />
           <PolarRadiusAxis />
           <Tooltip />
-          <Radar name="Mike" dataKey="value" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+          <Radar name="performance" dataKey="value" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
         </RadarChart>
       </ResponsiveContainer>
 
