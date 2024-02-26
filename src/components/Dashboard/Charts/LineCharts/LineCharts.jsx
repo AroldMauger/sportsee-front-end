@@ -114,8 +114,6 @@ const CustomTick = ({ index, x, y }) => {
         {/* Rectangle Dark-red pour les week-end */}
         <div style={{ position: "absolute", top: 0, right: 0, width: "33%", height: "100%", backgroundColor: "#800000", opacity: 0.2, borderRadius: "0px 10px 10px 0px", zIndex: 1, pointerEvents: "none"}}></div>
 
-
-    
       </ResponsiveContainer>
         
   )
