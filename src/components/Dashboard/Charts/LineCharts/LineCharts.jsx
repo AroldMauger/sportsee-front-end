@@ -48,7 +48,6 @@ const CustomTick = ({ index, x, y }) => {
 
       <ResponsiveContainer width={300} aspect={1} className={"linechart-container"}  style={{ position: "relative", width: "100%", height: "100%",  backgroundColor: '#FF0000', borderRadius: "10px" }} >
         
-
         <LineChart
           data={sessions}
           margin={{
@@ -97,8 +96,10 @@ const CustomTick = ({ index, x, y }) => {
             </linearGradient>
           </defs>
       
-          <Line type="natural" dataKey="sessionLength" stroke="url(#lineGradient)" dot={false} strokeWidth={3} opacity={0.7}   style={{ position: "absolute", zIndex: 1 }} // Ajoutez cette ligne pour positionner la ligne au-dessus
- />
+          <Line type="natural" dataKey="sessionLength" stroke="url(#lineGradient)" 
+                dot={false} strokeWidth={3} opacity={0.7}   
+                style={{ position: "absolute", zIndex: 1 }} // Ajoutez cette ligne pour positionner la ligne au-dessus
+          />
           <text x={40} y={50} style={{ fontSize: '18px', fill: '#FFFFFF', fontFamily: 'Roboto', fontWeight:'500', opacity:'0.5' }}>
           <tspan>
             Durée moyenne des
@@ -112,10 +113,12 @@ const CustomTick = ({ index, x, y }) => {
         </LineChart>
         
         {/* Rectangle Dark-red pour les week-end */}
-        <div style={{ position: "absolute", top: 0, right: 0, width: "33%", height: "100%", backgroundColor: "#800000", opacity: 0.2, borderRadius: "0px 10px 10px 0px", zIndex: 1, pointerEvents: "none"}}></div>
+        <div style={{ position: "absolute", top: 0, right: 0, width: "33%", 
+        height: "100%", backgroundColor: "#800000", opacity: 0.2, borderRadius: "0px 10px 10px 0px", 
+        zIndex: 1, pointerEvents: "none"}}></div>
 
       </ResponsiveContainer>
-        
+         // mettre un effet ombragé à droite au moment du hover sur le graphique !!!!!!!!!!!!!!!!!!
   )
 }
 
