@@ -1,10 +1,11 @@
-import React, { useContext, PureComponent } from 'react';
+import React, { useContext, PureComponent, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import "./LineCharts.scss";
 import UserContext from '../../../../context/UserContext.jsx';
 
 function LineCharts() {
   const { userSessions } = useContext(UserContext);
+  const [hoverIndex, setHoverIndex] = useState(null);
 
   if (!userSessions) {
     return <div>Loading...</div>;
@@ -44,6 +45,26 @@ const CustomTick = ({ index, x, y }) => {
       </text>
     );
   };
+
+  // Ici on déclare la variable width qui nous servira pour changer la largeur de la partie foncée au survol du graphique
+  let width;
+  if (hoverIndex === 6) {
+    width = "0%";
+  } else if (hoverIndex === 5) {
+    width = "16.5%";
+  }else if (hoverIndex === 4) {
+    width = "33%";
+  } else if (hoverIndex === 3) {
+    width = "50%";
+  } else if (hoverIndex === 2) {
+    width = "66.5%";
+  } else if (hoverIndex === 1) {
+    width = "83.5%";
+  } else if (hoverIndex === 0) {
+    width = "100%";
+  }
+  
+
   return (
 
       <ResponsiveContainer width={300} aspect={1} className={"linechart-container"}  style={{ position: "relative", width: "100%", height: "100%",  backgroundColor: '#FF0000', borderRadius: "10px" }} >
@@ -55,7 +76,19 @@ const CustomTick = ({ index, x, y }) => {
             top: 20,
             right: 0,            
           }}
+
+          // Ce code permet de mettre à jour l'état (state) de la variable hoverIndex défini au début du code avec useState
+          // 
+          onMouseMove={(e) => {
+            const xAxis = e && e.activePayload && e.activePayload[0] && e.activePayload[0].payload; // ici on vérifie si l'événement existe au survol sur le graphique
           
+            if (xAxis) {  
+              const index = sessions.findIndex((session) => session.day === xAxis.day); // on parcourt le tableau sessions et on renvoie l'index de la première session dont la propriété day correspond à la propriété day de xAxis.
+              setHoverIndex(index); // on met à jour la valeur de hoverIndex déclaré au début du code.
+            } else {
+              setHoverIndex(null);
+            }
+          }}
           >
           <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} fill='#FF0000' />
 
@@ -112,13 +145,23 @@ const CustomTick = ({ index, x, y }) => {
 
         </LineChart>
         
-        {/* Rectangle Dark-red pour les week-end */}
-        <div style={{ position: "absolute", top: 0, right: 0, width: "33%", 
-        height: "100%", backgroundColor: "#800000", opacity: 0.2, borderRadius: "0px 10px 10px 0px", 
-        zIndex: 1, pointerEvents: "none"}}></div>
-
+        {hoverIndex !== null ? (
+        <div 
+          style={{
+            position: "absolute", 
+            top: 0, 
+            right: 0, 
+            width: width, // la valeur en pourcentage de width est définie plus haut dans le code.
+            height: "100%", 
+            backgroundColor: "#800000", 
+            opacity: 0.2, 
+            borderRadius: "0px 10px 10px 0px", 
+            zIndex: 1, 
+            pointerEvents: "none"
+          }}
+        ></div>
+      ) : null}
       </ResponsiveContainer>
-         // mettre un effet ombragé à droite au moment du hover sur le graphique !!!!!!!!!!!!!!!!!!
   )
 }
 
