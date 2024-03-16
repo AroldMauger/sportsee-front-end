@@ -5,7 +5,7 @@ const UserContext = createContext();
 
 // On définit un provider pour accéder aux données dans toute l'application (voir App.jsx)
 export const UserProvider = ({ children }) => {
-    const userId = 18;
+    const userId = 12;
 
     // ON RECUPERE LES DONNES userData 
     const [userData, setUserData] = useState(null);
