@@ -85,9 +85,9 @@ function RadarCharts() {
   
   
   return (
-    <ResponsiveContainer width={300} aspect={1} style={{ width: "100%", height: "100%", backgroundColor: '#282D30', borderRadius: "10px" }} >
-      <RadarChart cx="50%" cy="50%" outerRadius="50%" data={dataInChart}  >
-        <PolarGrid  radialLines={false} polarRadius={[0, 10, 20, 40, 72, 95]} strokeWidth={1.2} />
+    <ResponsiveContainer minWidthwidth={500} aspect={1} style={{ width: "100%", height: "100%",  backgroundColor: '#282D30', borderRadius: "10px" }} >
+      <RadarChart cx="50%" cy="50%" outerRadius="50%" data={dataInChart} style={{ width: "90%", margin: 'auto'}}>
+        <PolarGrid  radialLines={false} polarRadius={[0, 10, 20, 40, 64]} strokeWidth={1} />
         <PolarAngleAxis dataKey="kind"  stroke="#FFFFFF" tickLine={false} 
   tick={renderOuterTick}
 
@@ -102,3 +102,6 @@ function RadarCharts() {
 }
 
 export default RadarCharts;
+
+
+

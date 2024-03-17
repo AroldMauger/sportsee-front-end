@@ -15,7 +15,7 @@ function BarCharts() {
   const { sessions } = userActivity.data;
 
   return (
-      <ResponsiveContainer width="100%" height="140%" className='barchart-container' style={{ backgroundColor: '#FBFBFB', borderRadius: "10px"}}>
+      <ResponsiveContainer width="100%" height={320} className='barchart-container' style={{ backgroundColor: '#FBFBFB', borderRadius: "10px"}}>
         <BarChart
           width={500}
           height={300}

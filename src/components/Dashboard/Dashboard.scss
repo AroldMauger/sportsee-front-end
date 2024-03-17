@@ -1,20 +1,25 @@
 .dashboard-container {
-    padding:60px;
+    padding-left:60px;
+    padding-bottom:80px;
+    padding-top: 36px;
+    width: 100%;
+
     .dashboard-main-container {
         display: flex;
         flex-direction: row;
         gap:30px;
+        width: 100%;
 
         .dashboard-charts-container {
             display: flex;
             flex-direction: column;
-            width: 58%;
-            min-width: 835px;
+            width: 80%;
             .dashboard-small-charts-container {
                 display: flex;
                 flex-direction: row;
-                gap:30px;
+                gap:25px;
             }
+           
         }
         .all-nutrients-container {
             display: flex;

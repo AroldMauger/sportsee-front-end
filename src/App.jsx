@@ -10,7 +10,7 @@ function App() {
     // Ici le provider entoure l'application pour pouvoir accéder aux données partout
     <UserProvider>
 
-        <div>
+        <div className='all-project-container'>
           <Navbar/>
           <main>
             <AsideNavbar/>

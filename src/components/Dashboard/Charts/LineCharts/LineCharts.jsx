@@ -63,7 +63,7 @@ function LineCharts() {
   }
 
   return (
-    <ResponsiveContainer width={"33%"}  className={"linechart-container"} style={{ position: "relative", backgroundColor: '#FF0000', borderRadius: "10px" }}>
+    <ResponsiveContainer  minWidthwidth={400} aspect={1} className={"linechart-container"} style={{ position: "relative", backgroundColor: '#FF0000', borderRadius: "10px" }}>
       <LineChart
         data={sessions}
         margin={{

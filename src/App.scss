@@ -2,7 +2,15 @@ main {
     display: flex;
     flex-direction: row;
     font-family: 'Roboto', sans-serif;
+    width: 100%;
+
 }
 body {
     margin: 0px;
+
+}
+
+.all-project-container {
+    width: 100%;
+    min-width: 1024px;
 }
