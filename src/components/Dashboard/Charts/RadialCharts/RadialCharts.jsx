@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { RadialBarChart, RadialBar, ResponsiveContainer, Legend, PolarAngleAxis } from 'recharts';
 import UserContext from '../../../../context/UserContext.jsx';
+import "./RadialCharts.scss";
 
 function RadialCharts() {
   const { userData } = useContext(UserContext);
@@ -22,8 +23,8 @@ function RadialCharts() {
   const data = [{ score: score }];
 
   return (
-    <ResponsiveContainer width={300} aspect={1} style={{ width: "100%", height: "100%", borderRadius: "10px" }}>
-      <RadialBarChart cx="50%" cy="50%" innerRadius="40%" outerRadius="80%" barSize={7} data={data}       startAngle={90}
+    <ResponsiveContainer width={300} aspect={1} style={{ width: "100%", background:"#FBFBFB", height: "100%", borderRadius: "10px" }}>
+      <RadialBarChart cx="50%" cy="50%" innerRadius="55%" outerRadius="100%" barSize={10} data={data}       startAngle={90}
           endAngle={450} >
                <circle cx="50%" cy="50%" r="27%" fill="#FFFFFF" />
           <PolarAngleAxis
@@ -31,8 +32,9 @@ function RadialCharts() {
             domain={[0, 1]}
             angleAxisId={0}
             tick={false}
+            background="#FBFBFB"
           />
-        <RadialBar minAngle={50} background clockWise dataKey="score"  cornerRadius={10}/>
+        <RadialBar minAngle={50}  clockWise dataKey="score"  cornerRadius={10} fill='#FF0000'/>
 
         <text
           className="title__lineChart"
@@ -40,9 +42,10 @@ function RadialCharts() {
           dominantBaseline={'hanging'}
           x="24"
           y="50"
-          fontSize="22"
+          fontSize="16"
           fill="black"
           opacity={1}
+          font-weight="500"
         >
           Score
         </text>
