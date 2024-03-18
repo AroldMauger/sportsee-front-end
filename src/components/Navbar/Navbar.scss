@@ -22,6 +22,22 @@
     }
     img {
         width: 14%;
+        height: 100%;
         min-width: 178px;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1100px) {
+
+    .navbar-container {
+        padding:8px;
+        .navbar-links {
+            margin:0px;
+        }
+        img {
+            min-width: 120px;
+            height: 100%;
+
+        }
     }
 }

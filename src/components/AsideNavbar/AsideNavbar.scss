@@ -23,3 +23,14 @@
         width: 200px;
     }
 }
+
+@media screen and (min-width: 1024px) and (max-width: 1100px) {
+
+    .aside-nav {
+        min-width: 80px;
+
+        .icons-container img {
+            width: 46px;
+        }
+    }
+}

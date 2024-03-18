@@ -42,26 +42,26 @@ function RadarCharts() {
     // On ajuste la position de chaque légende sur l'axe dx et dy en fonction de la maquette
     switch (payload.index) {
       case 0:
-        dy = -30;
-        break;
-      case 1:
-        dx = 40;
         dy = -10;
         break;
+      case 1:
+        dx = 30;
+        dy = 0;
+        break;
       case 2:
-        dx = 40;
-        dy = 15;
+        dx = 30;
+        dy = 5;
         break;
       case 3:
-        dy = 30;
+        dy = 10;
         break;
       case 4:
-        dx = -40;
-        dy = 15;
+        dx = -30;
+        dy = 5;
         break;
       case 5:
-        dx = -40;
-        dy = -10;        
+        dx = -30;
+        dy = 0;        
         break;
       case 6:
         dy = 25;
@@ -74,7 +74,7 @@ function RadarCharts() {
         x={x + dx} 
         y={y + dy} 
         fill="#FFFFFF" 
-        fontSize={12} 
+        fontSize={15} 
         textAnchor="middle"
         dominantBaseline="middle"
       >
@@ -86,11 +86,10 @@ function RadarCharts() {
   
   return (
     <ResponsiveContainer minWidthwidth={500} aspect={1} style={{ width: "100%", height: "100%",  backgroundColor: '#282D30', borderRadius: "10px" }} >
-      <RadarChart cx="50%" cy="50%" outerRadius="50%" data={dataInChart} style={{ width: "90%", margin: 'auto'}}>
+      <RadarChart cx="50%" cy="50%" outerRadius="50%" data={dataInChart} style={{ width: "100%", margin: 'auto'}}>
         <PolarGrid  radialLines={false} polarRadius={[0, 10, 20, 40, 64]} strokeWidth={1} />
         <PolarAngleAxis dataKey="kind"  stroke="#FFFFFF" tickLine={false} 
   tick={renderOuterTick}
-
          />
         <PolarRadiusAxis fill="#FFFFFF"  stroke="none" />
         

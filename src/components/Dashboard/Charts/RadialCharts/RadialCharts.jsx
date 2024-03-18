@@ -42,7 +42,6 @@ function RadialCharts() {
           dominantBaseline={'hanging'}
           x="24"
           y="30"
-          fontSize="24"
           fill="black"
           opacity={1}
         >

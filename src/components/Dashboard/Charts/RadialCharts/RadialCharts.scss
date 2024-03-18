@@ -1,5 +1,5 @@
 .radialChart__legend {
-    margin-left: 20px;
+    margin-left: 46px;
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
@@ -19,5 +19,43 @@
     font-weight: 500;
     font-size: 15px;
     margin:0px;
+}
 
+.title__lineChart {
+    font-size: 24px;
+}
+
+
+
+@media screen and (min-width: 1200px) and (max-width: 1300px) {
+
+    .radialChart__legend {
+        margin-left: 50px;
+        margin-top: 10px;
+
+    }
+    .radialChart__legend-value {
+        font-size: 28px;
+    }
+   
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1200px) {
+
+    .radialChart__legend {
+        margin-left: 40px;
+        margin-top: 16px;
+    }
+    
+    .radialChart__legend-value {
+        font-size: 22px;
+        margin-left:5px;
+    }
+    
+    .radialChart__legend-label {
+        font-size: 13px;
+    }
+    .title__lineChart {
+        font-size: 18px;
+    }
 }

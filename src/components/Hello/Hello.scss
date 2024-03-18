@@ -8,3 +8,12 @@
 .username-red {
     color:red;
 }
+
+@media screen and (min-width: 1024px) and (max-width: 1100px) {
+    .hello-container {
+        .hello-title {
+            font-size: 36px;
+        }
+    }
+
+}

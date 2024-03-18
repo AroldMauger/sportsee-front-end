@@ -1,10 +1,10 @@
 .nutrients-container {
     display: flex;
-    flex-direction: row;
     background-color: #FBFBFB;
     gap:20px;
     padding: 25px;
-    
+    width: 100%;
+
     img {
         height: 60px;
         width: 60px;
@@ -30,6 +30,20 @@
             line-height: 24px;
             letter-spacing: 0px;
             text-align: left;
+        }
+    }
+}
+
+
+@media screen and (min-width: 1024px) and (max-width: 1100px) {
+
+    .nutrients-container {
+        padding: 16px;
+        
+        img {
+            height: 46px;
+            width: 46px;
+         
         }
     }
 }
