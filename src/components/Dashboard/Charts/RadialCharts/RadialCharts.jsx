@@ -4,23 +4,13 @@ import UserContext from '../../../../context/UserContext.jsx';
 import "./RadialCharts.scss";
 
 function RadialCharts() {
-  const { userData } = useContext(UserContext);
+  const { userData, score  } = useContext(UserContext);
 
   if (!userData) {
     return <div>Loading...</div>;
   }
 
-
- let score;
- if (userData.data.todayScore !== undefined) {
-    score = userData.data.todayScore;
- } else if (userData.data.score !== undefined) {
-    score = userData.data.score;
- } else {
-   score = 0;   // valeur par défaut
- }
-
-  const data = [{ score: score }];
+  const data = [{ score }];
 
   return (
     <ResponsiveContainer minWidthwidth={400} aspect={1}  style={{ width: "100%", background:"#FBFBFB", height: "100%", borderRadius: "10px" }} >

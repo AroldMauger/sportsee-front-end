@@ -94,6 +94,7 @@ function LineCharts() {
           hide={true}
         />
         <Tooltip 
+          cursor={false}
           content={(tooltipProps) => {
             const { payload } = tooltipProps;
             if (payload && payload.length > 0) {
@@ -106,6 +107,7 @@ function LineCharts() {
             }
             return null;
           }}
+          
         />
         <defs>
           <linearGradient id="lineGradient">

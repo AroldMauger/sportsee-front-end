@@ -15,14 +15,16 @@ export const UserProvider = ({ children }) => {
         const fetchData = () => {
                 getUser(userId)
                 .then(data => {
-                    // faire une propriété qui est propre, peu importe si todayScore ou si score (par ex. currentScore)
-                    // setHasError = true
                     setUserData(data);
                 })
         };
         fetchData();
     }, []);
 
+    const calculateScore = () => {
+        if (!userData) return 0;
+        return userData.data.todayScore !== undefined ? userData.data.todayScore : userData.data.score !== undefined ? userData.data.score : 0;
+    };
 
         // ON RECUPERE LES DONNES userActivity
         const [userActivity, setUserActivity] = useState(null);
@@ -64,7 +66,8 @@ export const UserProvider = ({ children }) => {
             userData: userData,
             userActivity: userActivity,
             userSessions : userSessions,
-            userPerformance: userPerformance
+            userPerformance: userPerformance,
+            score:calculateScore()
         };
     return (
         <UserContext.Provider value={contextValue}>
