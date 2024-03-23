@@ -9,15 +9,31 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
     const userId = 18;
 
-    // ON RECUPERE LES DONNES userData 
     const [userData, setUserData] = useState(null);
+    const [userActivity, setUserActivity] = useState(null);
+    const [userSessions, setUserSessions] = useState(null);
+    const [userPerformance, setUserPerformance] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
     useEffect(() => {
-        const fetchData = () => {
-                getUser(userId)
-                .then(data => {
-                    setUserData(data);
-                })
+        const fetchData = async () => {
+            try {
+                const userData = await getUser(userId);
+                setUserData(userData);
+                const userActivityData = await getUserActivity(userId);
+                setUserActivity(userActivityData);
+                const userSessionsData = await getUserSessions(userId);
+                setUserSessions(userSessionsData);
+                const userPerformanceData = await getUserPerformance(userId);
+                setUserPerformance(userPerformanceData);
+                setLoading(false);
+            } catch (error) {
+                setError(error.message);
+                setLoading(false);
+            }
         };
+        setLoading(true);
         fetchData();
     }, []);
 
@@ -26,49 +42,16 @@ export const UserProvider = ({ children }) => {
         return userData.data.todayScore !== undefined ? userData.data.todayScore : userData.data.score !== undefined ? userData.data.score : 0;
     };
 
-        // ON RECUPERE LES DONNES userActivity
-        const [userActivity, setUserActivity] = useState(null);
-        useEffect(() => {
-            const fetchData = () => {
-                getUserActivity(userId)
-                    .then(data => {
-                        setUserActivity(data);
-                    })
-            };
-            fetchData();
-        }, []);
+    const contextValue = {
+        userData,
+        userActivity,
+        userSessions,
+        userPerformance,
+        score: calculateScore(),
+        loading,
+        error
+    };
 
-         // ON RECUPERE LES DONNES userSessions
-         const [userSessions, setUserSessions] = useState(null);
-         useEffect(() => {
-             const fetchData = () => {
-                     getUserSessions(userId)
-                     .then(data => {
-                        setUserSessions(data);
-                     })
-             };
-             fetchData();
-         }, []);
-
-          // ON RECUPERE LES DONNES userPerformance
-          const [userPerformance, setUserPerformance] = useState(null);
-          useEffect(() => {
-              const fetchData = () => {
-                     getUserPerformance(userId)
-                      .then(data => {
-                        setUserPerformance(data);
-                      })
-              };
-              fetchData();
-          }, []);
-        
-        const contextValue = {
-            userData: userData,
-            userActivity: userActivity,
-            userSessions : userSessions,
-            userPerformance: userPerformance,
-            score:calculateScore()
-        };
     return (
         <UserContext.Provider value={contextValue}>
             {children}
@@ -77,9 +60,3 @@ export const UserProvider = ({ children }) => {
 };
 
 export default UserContext;
-
-
-// ESTCE QUE JE SUIS EN TRAIN DE CHARGER ? +> AFFICHE RIEN (isLoading)
-// ESCE QUE JE SUIS EN ERREUR +> AFFICHE UN MESSAGE D'ERREUR (Error)
-// ESTCE QUE J'AI MES DONNEES = > AFFICHE LE GRAPHIQUE (userData, userPerformance, userActivity, userAverageSession) 
-//(environ 4 fetch au total pour récupérer les données pour les graph)

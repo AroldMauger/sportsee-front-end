@@ -7,10 +7,6 @@ function LineCharts() {
   const { userSessions } = useContext(UserContext);
   const [hoverIndex, setHoverIndex] = useState(null);
 
-  if (!userSessions) {
-    return <div>Loading...</div>;
-  }
-
   const { sessions } = userSessions.data;
 
   const CustomTick = ({ index, x, y }) => {

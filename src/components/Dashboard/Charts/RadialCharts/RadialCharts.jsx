@@ -4,11 +4,7 @@ import UserContext from '../../../../context/UserContext.jsx';
 import "./RadialCharts.scss";
 
 function RadialCharts() {
-  const { userData, score  } = useContext(UserContext);
-
-  if (!userData) {
-    return <div>Loading...</div>;
-  }
+  const { score  } = useContext(UserContext);
 
   const data = [{ score }];
 

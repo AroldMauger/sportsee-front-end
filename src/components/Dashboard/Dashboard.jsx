@@ -7,13 +7,21 @@ import LineCharts from "../Dashboard/Charts/LineCharts/LineCharts.jsx";
 import RadarCharts from "../Dashboard/Charts/RadarCharts/RadarCharts.jsx";
 import RadialCharts from "../Dashboard/Charts/RadialCharts/RadialCharts.jsx";
 import UserContext from '../../context/UserContext.jsx';
+import Loading from '../Loading/Loading.jsx';
+import HasError from '../HasError/HasError.jsx';
 
 function Dashboard() {
   // on récupère nos variables depuis le context
-  const { userData, userActivity, userSessions, userPerformance } = useContext(UserContext);
-  if (!userData || !userActivity || !userSessions || !userPerformance) {
-    return <div>Loading...</div>;
+  const { userData, userActivity, userSessions, userPerformance, loading, error } = useContext(UserContext);
+  if (loading) {
+    return <Loading/>  // affichage du spinner
   }
+
+  if (error || !userData || !userActivity || !userSessions || !userPerformance) {
+    return <HasError/>  // affichage du message d'erreur
+  }
+
+
   //On récupère l'objet data dans une variable keyData
   const { keyData } = userData.data;
 
@@ -44,4 +52,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export default Dashboard;

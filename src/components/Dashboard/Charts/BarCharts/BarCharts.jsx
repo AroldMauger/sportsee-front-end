@@ -7,10 +7,6 @@ import UserContext from '../../../../context/UserContext.jsx';
 function BarCharts() {
   const { userActivity } = useContext(UserContext);
 
-  if (!userActivity) {
-    return <div>Loading...</div>;
-  }
-
   //On récupère l'objet data dans une variable objet sessions
   const { sessions } = userActivity.data;
 
