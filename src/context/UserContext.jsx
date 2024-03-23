@@ -1,4 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
+import { getUser, getUserActivity, getUserPerformance, getUserSessions } from '../service/Api.jsx';
+//import { getUser, getUserActivity, getUserPerformance, getUserSessions } from '../service/Mockapi.jsx';
 
 // On utilise la méthode createContext() de React
 const UserContext = createContext();
@@ -11,21 +13,22 @@ export const UserProvider = ({ children }) => {
     const [userData, setUserData] = useState(null);
     useEffect(() => {
         const fetchData = () => {
-            fetch(`http://localhost:3000/user/${userId}`) 
-                .then((response) => response.json())
+                getUser(userId)
                 .then(data => {
+                    // faire une propriété qui est propre, peu importe si todayScore ou si score (par ex. currentScore)
+                    // setHasError = true
                     setUserData(data);
                 })
         };
         fetchData();
     }, []);
 
+
         // ON RECUPERE LES DONNES userActivity
         const [userActivity, setUserActivity] = useState(null);
         useEffect(() => {
             const fetchData = () => {
-                fetch(`http://localhost:3000/user/${userId}/activity`) 
-                    .then((response) => response.json())
+                getUserActivity(userId)
                     .then(data => {
                         setUserActivity(data);
                     })
@@ -37,8 +40,7 @@ export const UserProvider = ({ children }) => {
          const [userSessions, setUserSessions] = useState(null);
          useEffect(() => {
              const fetchData = () => {
-                 fetch(`http://localhost:3000/user/${userId}/average-sessions`) 
-                     .then((response) => response.json())
+                     getUserSessions(userId)
                      .then(data => {
                         setUserSessions(data);
                      })
@@ -50,8 +52,7 @@ export const UserProvider = ({ children }) => {
           const [userPerformance, setUserPerformance] = useState(null);
           useEffect(() => {
               const fetchData = () => {
-                  fetch(`http://localhost:3000/user/${userId}/performance`) 
-                      .then((response) => response.json())
+                     getUserPerformance(userId)
                       .then(data => {
                         setUserPerformance(data);
                       })
