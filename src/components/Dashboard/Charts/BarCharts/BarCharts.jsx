@@ -27,8 +27,9 @@ function BarCharts() {
           <text x={20} y={20} style={{ fontSize: '20px', fontWeight: 'bold' }}>Activité quotidienne</text>
           <CartesianGrid strokeDasharray="3 3" vertical={false}  />
           <XAxis dataKey="day" tickFormatter={(value, index) => index + 1} />  {/* Pour obtenir une numérotation en dessous des barres, on utilise l'index qui commence à 0, donc on ajoute +1*/}
-          <YAxis yAxisId="left" orientation="left" stroke="#8884d8" opacity={0} />
-          <YAxis yAxisId="right" orientation="right" stroke="#9B9EAC"           domain={["dataMin - 10", "dataMax + 10"]}/>        {/*domain={[69, 71]} */}
+          <YAxis yAxisId="left" orientation="left" opacity={0} />{/* Les valeurs de l'axe Y à gauche ne sont pas affichées*/}
+          <YAxis yAxisId="right" orientation="right" stroke="#9B9EAC"           
+          domain={["dataMin - 10", "dataMax + 10"]}/>        {/*domain nous permet de définir une tranche de valeurs pour l'axe Y */}
 
           {/*Tooltip se charge de la modale qui apparaît au survol sur les barres */}
           <Tooltip 
@@ -58,7 +59,11 @@ function BarCharts() {
             { value: 'Calories brûlées (kCal)', color: '#E60000' },
           ]}
           />
-          <Bar radius={[20, 20, 0, 0]} maxBarSize={8} yAxisId="right" dataKey="kilogram" fill="#282D30"   /> 
+          <Bar radius={[20, 20, 0, 0]} // L'effet arrondi des barres
+          maxBarSize={8} 
+          yAxisId="right"  // sur quel axe se basent les valeurs des barres : celui de droite
+          dataKey="kilogram" // mot clé pour les données
+          fill="#282D30"   /> 
           <Bar radius={[20, 20, 0, 0]} maxBarSize={8} yAxisId="left" dataKey="calories" fill="#E60000"   />
         </BarChart>
       </ResponsiveContainer>

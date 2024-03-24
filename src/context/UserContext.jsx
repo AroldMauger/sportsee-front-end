@@ -13,8 +13,8 @@ export const UserProvider = ({ children }) => {
     const [userActivity, setUserActivity] = useState(null);
     const [userSessions, setUserSessions] = useState(null);
     const [userPerformance, setUserPerformance] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);                   // état pour le chargement
+    const [error, setError] = useState(null);                       // état en cas d'erreur ou de non réponse du backend
 
     useEffect(() => {
         const fetchData = async () => {
@@ -33,11 +33,11 @@ export const UserProvider = ({ children }) => {
                 setLoading(false);
             }
         };
-        setLoading(true);
+        setLoading(true);  // on passe à true l'état de chargement avant la récupération des données
         fetchData();
     }, []);
 
-    const calculateScore = () => {
+    const calculateScore = () => {   // On formate les données reçu dans userData : soit "score" soit "todayScore"
         if (!userData) return 0;
         return userData.data.todayScore !== undefined ? userData.data.todayScore : userData.data.score !== undefined ? userData.data.score : 0;
     };

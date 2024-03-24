@@ -7,10 +7,6 @@ function RadarCharts() {
 
   const { userPerformance } = useContext(UserContext);
 
-  if (!userPerformance) {
-    return <div>Loading...</div>;
-  }
-
   // On récupère l'objet data dans une variable objet data
   const { data } = userPerformance.data;
 
@@ -34,6 +30,7 @@ function RadarCharts() {
     kind: translationsToFrench[kind],
     value: data.find(item => kinds[item.kind] === kind).value // on cherche dans "data" l'éléments dont le kind correspond au kind dans map(kind =>)
   }));
+  // Cette fonction sert à placer chaque élément de la légende en définissant pour chacune des valeurs une position dx et dy
   function renderOuterTick(props) {
     const { x, y, payload } = props;
     let dx = 0;
@@ -75,7 +72,7 @@ function RadarCharts() {
         y={y + dy} 
         fill="#FFFFFF" 
         fontSize={15} 
-        textAnchor="middle"
+        textAnchor="middle" // on aligne toutes les légendes au milieu sur l'axe X
         dominantBaseline="middle"
       >
         {payload.value}
@@ -86,15 +83,23 @@ function RadarCharts() {
   
   return (
     <ResponsiveContainer minWidthwidth={500} aspect={1} style={{ width: "100%", height: "100%",  backgroundColor: '#282D30', borderRadius: "10px" }} >
-      <RadarChart cx="50%" cy="50%" outerRadius="50%" data={dataInChart} style={{ width: "100%", margin: 'auto'}}>
-        <PolarGrid  radialLines={false} polarRadius={[0, 10, 20, 40, 64]} strokeWidth={1} />
-        <PolarAngleAxis dataKey="kind"  stroke="#FFFFFF" tickLine={false} 
-  tick={renderOuterTick}
+      <RadarChart cx="50%" cy="50%" // centrage du graphique
+      outerRadius="50%" // réduction de la taille du graphique de 50%
+      data={dataInChart} style={{ width: "100%", margin: 'auto'}}>
+        
+        <PolarGrid  radialLines={false}  // suppression des lignes blanches diagonales
+        polarRadius={[0, 10, 20, 40, 64]} //on définit ici l'espacement entre les lignes blanches du graphique
+        strokeWidth={1} />
+        <PolarAngleAxis dataKey="kind"  stroke="#FFFFFF" tickLine={false}  // suppression des tick aux extrémités du graphique
+        tick={renderOuterTick} // on appelle la fonction qui place les légendes
          />
-        <PolarRadiusAxis fill="#FFFFFF"  stroke="none" />
+        <PolarRadiusAxis fill="#FFFFFF"  stroke="none" // suppression de l'axe horizontal avec les données
+        />
         
         <Tooltip />
-        <Radar name="performance" dataKey="value" stroke="none" fill="#FF0101B2" fillOpacity={0.9}  />
+        <Radar name="Performance" // définir ici "performance" permet au Tooltip d'afficher "performance" au survol de la souris
+        dataKey="value" // ici, les valeurs du graphique
+        fill="#FF0101B2" fillOpacity={0.9}  />
       </RadarChart>
     </ResponsiveContainer>
   );

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import "./NutrientsContainer.scss";
 
 function NutrientsContainer(props) {
@@ -14,6 +14,6 @@ function NutrientsContainer(props) {
       </div>
     </div>
   )
-}
+} 
 
 export default NutrientsContainer

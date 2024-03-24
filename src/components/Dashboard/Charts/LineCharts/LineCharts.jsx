@@ -5,13 +5,13 @@ import UserContext from '../../../../context/UserContext.jsx';
 
 function LineCharts() {
   const { userSessions } = useContext(UserContext);
-  const [hoverIndex, setHoverIndex] = useState(null);
+  const [hoverIndex, setHoverIndex] = useState(null); // La fonction "setHoverIndex" mettre à jour la valeur de hoverIndex
 
   const { sessions } = userSessions.data;
 
   const CustomTick = ({ index, x, y }) => {
     let label;
-    switch (index) {
+    switch (index) {  // On associe une lettre à chaque index du tableau
       case 0:
         label = 'L';
         break;
@@ -35,12 +35,12 @@ function LineCharts() {
         break;
     }
     return (
-      <text x={x - ((index - 2) * 8)} y={y} fill="#FFFFFF" opacity={0.5}>
+      <text x={x - ((index - 2) * 8)} y={y} fill="#FFFFFF" opacity={0.5}> {/* Pour que les initiales des jours soient plus rapprochées */}
         {label}
       </text>
     );
   };
-
+  // On change la valeur de la variable (width) en pourcentage en fonction de l'index survolé 
   let width;
   if (hoverIndex === 6) {
     width = "0%";
@@ -67,28 +67,30 @@ function LineCharts() {
           top: 20,
           right: 0,
         }}
+        // au survol sur le graphique on veut récupérer la position horizontale de la souris
         onMouseMove={(e) => {
           const xAxis = e && e.activePayload && e.activePayload[0] && e.activePayload[0].payload;
           if (xAxis) {
             const index = sessions.findIndex((session) => session.day === xAxis.day);
-            setHoverIndex(index);
+            setHoverIndex(index); // la fonction "setHoverIndex" met à jour la variable hoverIndex définie plus haut
           } else {
-            setHoverIndex(null);
+            setHoverIndex(null); // s'il n'y a pas de survol sur le graphique, alors la fonction renvoie null et le rectangle foncé n'apparaît pas
           }
         }}
       >
         <XAxis 
           dataKey="day" 
           tick={<CustomTick />}
-          tickLine={false}
-          axisLine={false}
+          tickLine={false} // faire disparaitre les séparateurs tick de l'axe X
+          axisLine={false} // faire disparaitre l'axe X
           tickSize={0} 
           interval={"preserveStartEnd"}
         />
         <YAxis 
-          domain={["dataMin - 20", "dataMax + 30"]}
+          domain={["dataMin - 20", "dataMax + 30"]} // on définit une tranche de valeurs pour mieux centrer la ligne du graphique
           hide={true}
         />
+        {/*Tooltip se charge de la modale qui apparaît au survol sur les barres */}
         <Tooltip 
           cursor={false}
           content={(tooltipProps) => {
@@ -107,7 +109,7 @@ function LineCharts() {
         />
         <defs>
           <linearGradient id="lineGradient">
-            <stop offset="0%" stopColor="#FFFFFF" stopOpacity={0.5}/>
+            <stop offset="0%" stopColor="#FFFFFF" stopOpacity={0.5}/> {/* Mise en forme de la ligne avec opacité progressive */}
             <stop offset="70%" stopColor="#FFFFFF"/>
           </linearGradient>
         </defs>
@@ -118,13 +120,15 @@ function LineCharts() {
           dot={false} 
           strokeWidth={3} 
           opacity={0.7}   
-          style={{ position: "absolute", zIndex: 1 }} 
+          style={{ position: "absolute" }} 
         />
         <text x={40} y={50} style={{ fontSize: '18px', fill: '#FFFFFF', fontFamily: 'Roboto', fontWeight:'500', opacity:'0.5' }}>
           <tspan>Durée moyenne des</tspan>
           <tspan x={40} dy="1.2em">sessions</tspan>
         </text>
       </LineChart>
+      {/* Si un index survolé existe, alors un rectangle rouge foncé apparaît pour remplir le graphique. 
+      La largeur (width) de ce rectangle dépend de la variable hoverIndex*/}
       {hoverIndex !== null ? (
         <div className='dark-rectangle'
           style={{

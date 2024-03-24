@@ -41,6 +41,7 @@ function Dashboard() {
          </div>
              
         </div>
+        {/* Pour les nutriments, on passe des props au composant*/}
         <div className='all-nutrients-container'>
           <NutrientsContainer nutrientName="Calories" nutrientIcon="calories-icon.png" keyData={keyData.calorieCount+"kCal"}/>
           <NutrientsContainer nutrientName="Protéines" nutrientIcon="protein-icon.png" keyData={keyData.proteinCount+"g"}/>
