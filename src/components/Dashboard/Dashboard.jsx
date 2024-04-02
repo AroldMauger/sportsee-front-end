@@ -16,11 +16,9 @@ function Dashboard() {
   if (loading) {
     return <Loading/>  // affichage du spinner
   }
-
   if (error || !userData || !userActivity || !userSessions || !userPerformance) {
     return <HasError/>  // affichage du message d'erreur
   }
-
 
   //On récupère l'objet data dans une variable keyData
   const { keyData } = userData.data;
@@ -32,14 +30,11 @@ function Dashboard() {
       <div className='dashboard-main-container'>
         <div className='dashboard-charts-container'>
           <BarCharts/>
-                    
-
           <div className='dashboard-small-charts-container'>
                 <LineCharts/>
                 <RadarCharts/>
                 <RadialCharts/>
          </div>
-             
         </div>
         {/* Pour les nutriments, on passe des props au composant*/}
         <div className='all-nutrients-container'>

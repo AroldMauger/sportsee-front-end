@@ -1,5 +1,5 @@
-import React, { useContext, PureComponent } from 'react';
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import React, { useContext } from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import "./BarCharts.scss";
 import UserContext from '../../../../context/UserContext.jsx';
 

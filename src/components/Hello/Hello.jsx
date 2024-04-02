@@ -5,9 +5,6 @@ import UserContext from '../../context/UserContext.jsx';
 function Hello() {
   const { userData } = useContext(UserContext);
 
-  if (!userData) {
-    return <div>Loading...</div>;
-  }
   //On récupère l'objet data dans une variable userInfos
   const { userInfos } = userData.data;
 

@@ -43,7 +43,7 @@ function RadialCharts() {
           fill="#74798C"
           content={() => (
             <div className='radialChart__legend'>
-              <p className="radialChart__legend-value">{`${score * 100}%`}</p> {/*On affiche le score en % */}
+              <p className="radialChart__legend-value">{`${Math.round(score * 100)}%`}</p> {/*On affiche le score en % arrondi*/}
               <p className="radialChart__legend-label">de votre objectif</p>
             </div>
           )}

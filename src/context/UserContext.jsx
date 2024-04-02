@@ -1,13 +1,13 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { getUser, getUserActivity, getUserPerformance, getUserSessions } from '../service/Api.jsx';
-//import { getUser, getUserActivity, getUserPerformance, getUserSessions } from '../service/Mockapi.jsx';
+//import { getUser, getUserActivity, getUserPerformance, getUserSessions } from '../service/Api.jsx';
+import { getUser, getUserActivity, getUserPerformance, getUserSessions } from '../service/Mockapi.jsx';
 
 // On utilise la méthode createContext() de React
 const UserContext = createContext();
 
 // On définit un provider pour accéder aux données dans toute l'application (voir App.jsx)
 export const UserProvider = ({ children }) => {
-    const userId = 18;
+    const userId = 12;
 
     const [userData, setUserData] = useState(null);
     const [userActivity, setUserActivity] = useState(null);
